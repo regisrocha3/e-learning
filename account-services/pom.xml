@@ -4,12 +4,12 @@
 	<modelVersion>4.0.0</modelVersion>
 
 	<groupId>labs.rr.io</groupId>
-	<artifactId>e-learning</artifactId>
+	<artifactId>e-learning-account-services</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<packaging>jar</packaging>
 
-	<name>e-learning</name>
-	<description>Project to learning</description>
+	<name>e-learning-account-services</name>
+	<description>Account MicroServices</description>
 
 	<parent>
 		<groupId>org.springframework.boot</groupId>
