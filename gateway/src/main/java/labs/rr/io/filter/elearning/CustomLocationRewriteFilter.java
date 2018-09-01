@@ -12,11 +12,11 @@ import com.netflix.zuul.context.RequestContext;
  */
 public class CustomLocationRewriteFilter extends LocationRewriteFilter {
 
-	 @Override
-	    public boolean shouldFilter() {
-	        final RequestContext ctx = RequestContext.getCurrentContext();
-	        int statusCode = ctx.getResponseStatusCode();
-	        return HttpStatus.valueOf(statusCode).is3xxRedirection() || HttpStatus.valueOf(statusCode) == HttpStatus.CREATED;
+	@Override
+	public boolean shouldFilter() {
+		final RequestContext ctx = RequestContext.getCurrentContext();
+		int statusCode = ctx.getResponseStatusCode();
+		return HttpStatus.valueOf(statusCode).is3xxRedirection() || HttpStatus.valueOf(statusCode) == HttpStatus.CREATED;
 	}
-	
+
 }
