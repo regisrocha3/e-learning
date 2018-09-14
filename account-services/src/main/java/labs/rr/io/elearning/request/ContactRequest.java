@@ -1,42 +1,30 @@
-package labs.rr.io.elearning.entity;
+package labs.rr.io.elearning.request;
 
 import java.io.Serializable;
 
-import javax.persistence.Column;
-import javax.persistence.Id;
-import javax.persistence.Table;
-
 /**
- * Table Contact
+ * Request Contact
  * 
  * @author regis.rocha
  *
  */
-@Table(name = "contacts")
-public class Contact implements Serializable {
+public class ContactRequest implements Serializable {
 
 	/**
 	 * serial version
 	 */
-	private static final long serialVersionUID = 3026697457012921080L;
+	private static final long serialVersionUID = 5368693520946174588L;
 
-	@Id
-	@Column(name = "id")
 	private String id;
 
-	@Column(name = "ddi_code")
 	private String ddiCode;
 
-	@Column(name = "ddd_code")
 	private String dddCode;
 
-	@Column(name = "phone_number")
 	private String phoneNumber;
 
-	@Column(name = "description")
 	private String description;
 
-	@Column(name = "secondary_email")
 	private String secondaryEmail;
 
 	/**
@@ -130,7 +118,8 @@ public class Contact implements Serializable {
 	 */
 	@Override
 	public String toString() {
-		return "Contact [id=" + id + ", ddiCode=" + ddiCode + ", dddCode=" + dddCode + ", phoneNumber=" + phoneNumber
-				+ ", description=" + description + ", secondaryEmail=" + secondaryEmail + "]";
+		return "ContactRequest [id=" + id + ", ddiCode=" + ddiCode + ", dddCode=" + dddCode + ", phoneNumber="
+				+ phoneNumber + ", description=" + description + ", secondaryEmail=" + secondaryEmail + "]";
 	}
+
 }

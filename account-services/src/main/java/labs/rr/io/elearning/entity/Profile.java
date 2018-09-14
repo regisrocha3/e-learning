@@ -1,11 +1,16 @@
 package labs.rr.io.elearning.entity;
 
 import java.io.Serializable;
+import java.util.Arrays;
 import java.util.Calendar;
-import java.util.Date;
 
 import javax.persistence.Column;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 /**
  * Table Profile
@@ -22,11 +27,45 @@ public class Profile implements Serializable {
 	 */
 	private static final long serialVersionUID = -2820927396532698876L;
 
+	@Id
+	@OneToOne
+	@JoinColumn(name = "email", referencedColumnName = "email")
+	private Account account;
+
 	@Column(name = "name")
 	private String name;
 
 	@Column(name = "birthdate")
+	@Temporal(TemporalType.TIMESTAMP)
 	private Calendar birthdate;
+
+	@Column(name = "photo")
+	private byte[] photo;
+
+	@Column(name = "gender", length = 1, nullable = false)
+	private String gender;
+
+	@Column(name = "created")
+	@Temporal(TemporalType.TIMESTAMP)
+	private Calendar created;
+
+	@Column(name = "modified")
+	@Temporal(TemporalType.TIMESTAMP)
+	private Calendar modified;
+
+	/**
+	 * @return the account
+	 */
+	public Account getAccount() {
+		return account;
+	}
+
+	/**
+	 * @param account the account to set
+	 */
+	public void setAccount(Account account) {
+		this.account = account;
+	}
 
 	/**
 	 * @return the name
@@ -56,6 +95,62 @@ public class Profile implements Serializable {
 		this.birthdate = birthdate;
 	}
 
+	/**
+	 * @return the photo
+	 */
+	public byte[] getPhoto() {
+		return photo;
+	}
+
+	/**
+	 * @param photo the photo to set
+	 */
+	public void setPhoto(byte[] photo) {
+		this.photo = photo;
+	}
+
+	/**
+	 * @return the gender
+	 */
+	public String getGender() {
+		return gender;
+	}
+
+	/**
+	 * @param gender the gender to set
+	 */
+	public void setGender(String gender) {
+		this.gender = gender;
+	}
+
+	/**
+	 * @return the created
+	 */
+	public Calendar getCreated() {
+		return created;
+	}
+
+	/**
+	 * @param created the created to set
+	 */
+	public void setCreated(Calendar created) {
+		this.created = created;
+	}
+
+	/**
+	 * @return the modified
+	 */
+	public Calendar getModified() {
+		return modified;
+	}
+
+	/**
+	 * @param modified the modified to set
+	 */
+	public void setModified(Calendar modified) {
+		this.modified = modified;
+	}
+
 	/*
 	 * (non-Javadoc)
 	 * 
@@ -63,67 +158,9 @@ public class Profile implements Serializable {
 	 */
 	@Override
 	public String toString() {
-		return "Profile [name=" + name + ", birthdate=" + birthdate + "]";
-	}
-
-	public Profile() {
-	}
-
-	/**
-	 * @param name
-	 * @param birthdate
-	 */
-	public Profile(String name, Date birthdate) {
-		this.name = name;
-		this.birthdate = birthdate;
-	}
-
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see java.lang.Object#hashCode()
-	 */
-	@Override
-	public int hashCode() {
-		final int prime = 31;
-		int result = 1;
-		result = prime * result + ((birthdate == null) ? 0 : birthdate.hashCode());
-		result = prime * result + ((name == null) ? 0 : name.hashCode());
-		return result;
-	}
-
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see java.lang.Object#equals(java.lang.Object)
-	 */
-	@Override
-	public boolean equals(Object obj) {
-		if (this == obj) {
-			return true;
-		}
-		if (obj == null) {
-			return false;
-		}
-		if (!(obj instanceof Profile)) {
-			return false;
-		}
-		Profile other = (Profile) obj;
-		if (birthdate == null) {
-			if (other.birthdate != null) {
-				return false;
-			}
-		} else if (!birthdate.equals(other.birthdate)) {
-			return false;
-		}
-		if (name == null) {
-			if (other.name != null) {
-				return false;
-			}
-		} else if (!name.equals(other.name)) {
-			return false;
-		}
-		return true;
+		return "Profile [account=" + account + ", name=" + name + ", birthdate=" + birthdate + ", photo="
+				+ Arrays.toString(photo) + ", gender=" + gender + ", created=" + created + ", modified=" + modified
+				+ "]";
 	}
 
 }
