@@ -151,6 +151,13 @@ public class Account implements Serializable {
 	public void setModified(Calendar modified) {
 		this.modified = modified;
 	}
+	
+	public Account() {
+	}
+	
+	public Account(String email) {
+		this.email = email;
+	}
 
 	/*
 	 * (non-Javadoc)
