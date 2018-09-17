@@ -18,6 +18,7 @@ import labs.rr.io.elearning.response.AccountResponse;
 import labs.rr.io.elearning.response.ContactResponse;
 import labs.rr.io.elearning.response.ProfileResponse;
 import labs.rr.io.elearning.util.DateUtil;
+import labs.rr.io.elearning.util.ValidatorUtil;
 
 /**
  * Classe auxiliar ao servico de conta
@@ -208,5 +209,18 @@ public class AccountHelper {
 		}
 		
 		return res;
+	}
+
+
+	/**
+	 * Valida informacoes obrigatorias 
+	 * 
+	 * @param account - Account
+	 */
+	public static void validateForCreate(final Account account) {
+		ValidatorUtil.isObjectNull(account, "Dados da conta nao foi preenchido");
+		ValidatorUtil.isEmpty(account.getEmail(), "E-mail da conta nao foi preenchido");
+		ValidatorUtil.isObjectNull(account.getProfile(), "Dados do perfil da conta nao foi preenchido");
+		ValidatorUtil.isEmpty(account.getProfile().getName(), "Nome nao foi preenchido");
 	}
 }

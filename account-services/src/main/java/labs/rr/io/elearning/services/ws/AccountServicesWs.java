@@ -52,7 +52,7 @@ public class AccountServicesWs {
 			final Account acc = this.accountServices.create(AccountHelper.convertToEntity(accountRequest));
 			
 			return ResponseEntity.status(HttpStatus.CREATED).body(new Response<AccountResponse>()
-					.addBusinessMessage(AccountHelper.convertToResponse(acc))
+					.addBody(AccountHelper.convertToResponse(acc))
 					.addBusinessCode(HttpStatus.CREATED.value()));
 			
 		} catch (ValidationException e) {
