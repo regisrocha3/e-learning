@@ -14,7 +14,7 @@ import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
 /**
- * Column Family Account
+ * Table Account
  * 
  * 
  * @author regis.rocha
