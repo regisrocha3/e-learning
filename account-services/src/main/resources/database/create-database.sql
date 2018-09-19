@@ -18,19 +18,33 @@ CREATE TABLE contact(
 	description		varchar(500) 	 	null,
 	secondary_email varchar(150) 	 	null,
 	
-	constraint pk_contact 		primary key (id),
+	constraint pk_contact 		primary key (id)
 );
-    
+
+-- definicao da tabela de perfil
+CREATE TABLE profile(
+	email 				varchar(150) not null,
+	name 				varchar(255) not null,
+	birthdate			date			 null,
+	photo				bytea 			 null,
+	gender				varchar(1)		 null,
+	created				timestamp	 not null,	
+	modified			timestamp	 not null,
+	
+	constraint pk_profile primary key (email)
+);
     
 -- Definicao da tabela de conta    
 CREATE TABLE account(
 	email 				varchar(150) not null,
 	password			varchar(150) not null,
 	id_contact			varchar(50) 	 null,
-	
+	created				timestamp 	 not null,
+	modified			timestamp 	 not null,
+	id_profile			varchar(50)  not null,
 	
 	constraint pk_account 		primary key (email),
-	constraint fk_acc_contact 	foreign key(id_contact) references (id)
+	constraint fk_acc_contact 	foreign key(id_contact) references contact(id)
 );
 
 

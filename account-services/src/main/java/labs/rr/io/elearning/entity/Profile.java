@@ -36,7 +36,7 @@ public class Profile implements Serializable {
 	private String name;
 
 	@Column(name = "birthdate")
-	@Temporal(TemporalType.TIMESTAMP)
+	@Temporal(TemporalType.DATE)
 	private Calendar birthdate;
 
 	@Column(name = "photo")

@@ -43,7 +43,7 @@ public class Account implements Serializable {
 	@JoinColumn(name = "email", referencedColumnName = "email")
 	private Profile profile;
 
-	@OneToOne
+	//@OneToOne
 	private TokenSessionAccount token;
 
 	@Column(name = "created")
