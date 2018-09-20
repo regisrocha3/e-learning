@@ -1,9 +1,8 @@
 package labs.rr.io.elearning.repository;
 
-import org.springframework.data.repository.CrudRepository;
-
 import labs.rr.io.elearning.entity.Account;
 import labs.rr.io.elearning.exception.CreateException;
+import labs.rr.io.elearning.exception.FindException;
 
 /**
  * Interface para acesso ao banco de dados da conta.
@@ -11,7 +10,7 @@ import labs.rr.io.elearning.exception.CreateException;
  * @author regis.rocha
  *
  */
-public interface AccountRepository extends CrudRepository<Account, String> {
+public interface AccountRepository {
 
 	/**
 	 * Persiste nova conta
@@ -21,5 +20,17 @@ public interface AccountRepository extends CrudRepository<Account, String> {
 	 * @return Account
 	 */
 	Account create(Account account) throws CreateException;
+
+	
+	/**
+	 * Consulta conta pelo Email
+	 * 
+	 * @param email - String
+	 * 
+	 * @return Account
+	 * 
+	 * @throws FindException
+	 */
+	Account findById(String email) throws FindException;
 
 }

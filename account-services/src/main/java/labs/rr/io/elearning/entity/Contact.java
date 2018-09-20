@@ -4,7 +4,6 @@ import java.io.Serializable;
 
 import javax.persistence.Column;
 import javax.persistence.Id;
-import javax.persistence.Table;
 
 /**
  * Table Contact
@@ -12,7 +11,8 @@ import javax.persistence.Table;
  * @author regis.rocha
  *
  */
-@Table(name = "contacts")
+//@Entity
+//@Table(name = "contact")
 public class Contact implements Serializable {
 
 	/**

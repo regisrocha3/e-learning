@@ -5,13 +5,12 @@ import java.util.Calendar;
 import java.util.Set;
 
 import javax.persistence.Column;
+import javax.persistence.Entity;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import javax.persistence.Transient;
 
 /**
  * Table Account
@@ -20,6 +19,7 @@ import javax.persistence.TemporalType;
  * @author regis.rocha
  *
  */
+@Entity
 @Table(name = "account")
 public class Account implements Serializable {
 
@@ -29,25 +29,28 @@ public class Account implements Serializable {
 	private static final long serialVersionUID = 1217092416799446966L;
 
 	@Id
-	@Column(name = "email")
 	private String email;
 
 	@Column(name = "password")
 	private String password;
 
-	@ManyToOne
-	@JoinColumn(name = "id_contact", referencedColumnName = "id")
+	//@OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
+	//@JoinColumn(name = "id_contact")
+	@Transient
 	private Set<Contact> contacts;
 
-	@OneToOne
-	@JoinColumn(name = "email", referencedColumnName = "email")
+	//@OneToOne
+	//@JoinColumn(name = "email", referencedColumnName = "email")
+	@Transient
 	private Profile profile;
 
 	//@OneToOne
+	@Transient
 	private TokenSessionAccount token;
 
-	@Column(name = "created")
-	@Temporal(TemporalType.TIMESTAMP)
+	//@Column(name = "created")
+	//@Temporal(TemporalType.TIMESTAMP)
+	@Transient
 	private Calendar created;
 
 	@Column(name = "modified")

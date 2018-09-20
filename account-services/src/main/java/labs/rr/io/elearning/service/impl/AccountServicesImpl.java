@@ -48,7 +48,7 @@ public class AccountServicesImpl implements AccountServices {
 		this.validateForCreate(account);
 		
 		try {
-			final Account accFound = this.accountRepository.findById(account.getEmail()).get();
+			final Account accFound = this.accountRepository.findById(account.getEmail());
 			
 			if (accFound != null) {
 				throw new ValidationException("Ja existe uma conta com o email informado: " + accFound.getEmail());

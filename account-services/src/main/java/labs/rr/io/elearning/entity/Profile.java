@@ -8,7 +8,6 @@ import javax.persistence.Column;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
-import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
@@ -19,7 +18,8 @@ import javax.persistence.TemporalType;
  * @author regis.rocha
  *
  */
-@Table(name = "profile")
+//@Entity
+//@Table(name = "profile")
 public class Profile implements Serializable {
 
 	/**
