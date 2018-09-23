@@ -1,9 +1,12 @@
 package labs.rr.io.elearning.entity;
 
 import java.io.Serializable;
+import java.util.UUID;
 
 import javax.persistence.Column;
+import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.Table;
 
 /**
  * Table Contact
@@ -11,8 +14,8 @@ import javax.persistence.Id;
  * @author regis.rocha
  *
  */
-//@Entity
-//@Table(name = "contact")
+@Entity
+@Table(name = "contact")
 public class Contact implements Serializable {
 
 	/**
@@ -132,5 +135,12 @@ public class Contact implements Serializable {
 	public String toString() {
 		return "Contact [id=" + id + ", ddiCode=" + ddiCode + ", dddCode=" + dddCode + ", phoneNumber=" + phoneNumber
 				+ ", description=" + description + ", secondaryEmail=" + secondaryEmail + "]";
+	}
+	
+	/**
+	 * Pre persist
+	 */
+	public void prePersist() {
+		this.id = UUID.randomUUID().toString();
 	}
 }

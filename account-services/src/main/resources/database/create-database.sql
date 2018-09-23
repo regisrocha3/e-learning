@@ -48,7 +48,17 @@ CREATE TABLE account(
 );
 
 
-
+-- token de sessao do usuario
+CREATE TABLE token_session_account(
+	tokenId 		varchar(50) 	not null,
+	email 			varchar(150) 	not null,
+	created			timestamp 	 	not null,
+	modified		timestamp 	 	not null,
+	is_expired		varchar(1)		not null,
+	
+	constraint pk_token_session_acc 		primary key (email),
+	constraint fk_token_account 			foreign key(email) references account(email)
+);
 
 
 

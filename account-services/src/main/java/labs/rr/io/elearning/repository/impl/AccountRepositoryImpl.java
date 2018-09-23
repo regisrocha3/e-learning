@@ -1,6 +1,8 @@
 package labs.rr.io.elearning.repository.impl;
 
-import org.apache.log4j.Logger;
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
+
 import org.springframework.stereotype.Repository;
 
 import labs.rr.io.elearning.entity.Account;
@@ -18,10 +20,11 @@ import labs.rr.io.elearning.repository.AccountRepository;
 public class AccountRepositoryImpl implements AccountRepository {
 	
 	/**
-	 * LOG
+	 * @Inject
 	 */
-	private static final Logger LOG = Logger.getLogger(AccountRepositoryImpl.class);
-
+	@PersistenceContext
+	private EntityManager entityManager;
+	
 	/**
 	 * Persiste nova conta
 	 * 
@@ -31,10 +34,12 @@ public class AccountRepositoryImpl implements AccountRepository {
 	 */
 	@Override
 	public Account create(final Account account) throws CreateException {
-		LOG.info("Creating account: " + account);
-		
-		// TODO Auto-generated method stub
-		return null;
+		try {
+			return this.entityManager.merge(account);
+			
+		} catch (Exception e) {
+			throw new CreateException(e);
+		}
 	}
 
 	
@@ -49,10 +54,12 @@ public class AccountRepositoryImpl implements AccountRepository {
 	 */
 	@Override
 	public Account findById(final String email) throws FindException {
-		LOG.info("Finding account by email: " + email);
-		
-		// TODO Auto-generated method stub
-		return null;
+		try {
+			return this.entityManager.createNamedQuery("Account.findById", Account.class).setParameter("email", email)
+					.getSingleResult();
+			
+		} catch (Exception e) {
+			throw new FindException(e);
+		}
 	}
-
 }

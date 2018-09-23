@@ -4,13 +4,18 @@ import java.io.Serializable;
 import java.util.Calendar;
 import java.util.Set;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
+import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
-import javax.persistence.Transient;
 
 /**
  * Table Account
@@ -21,6 +26,7 @@ import javax.persistence.Transient;
  */
 @Entity
 @Table(name = "account")
+@NamedQueries(value = {@NamedQuery(name = "Account.findById", query = "FROM Account a WHERE a.email=:email")})
 public class Account implements Serializable {
 
 	/**
@@ -34,23 +40,20 @@ public class Account implements Serializable {
 	@Column(name = "password")
 	private String password;
 
-	//@OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
-	//@JoinColumn(name = "id_contact")
-	@Transient
+	@OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
+	@JoinColumn(name = "id_contact")
 	private Set<Contact> contacts;
 
-	//@OneToOne
-	//@JoinColumn(name = "email", referencedColumnName = "email")
-	@Transient
+	@OneToOne
+	@JoinColumn(name = "email", referencedColumnName = "email")
 	private Profile profile;
 
-	//@OneToOne
-	@Transient
+	@OneToOne
+	@JoinColumn(name = "email", referencedColumnName = "email")
 	private TokenSessionAccount token;
 
-	//@Column(name = "created")
-	//@Temporal(TemporalType.TIMESTAMP)
-	@Transient
+	@Column(name = "created")
+	@Temporal(TemporalType.TIMESTAMP)
 	private Calendar created;
 
 	@Column(name = "modified")
@@ -172,5 +175,5 @@ public class Account implements Serializable {
 		return "Account [email=" + email + ", password=" + password + ", contacts=" + contacts + ", profile=" + profile
 				+ ", token=" + token + ", created=" + created + ", modified=" + modified + "]";
 	}
-
+	
 }
